@@ -127,7 +127,7 @@ class Database(object):
                 elif trail_lvl < (usr_lvl - Decimal(.2)):
                     usr_lvl = max(0.0, trail_lvl)
                 else:
-                    usr_lvl = trail_lvl
+                    usr_lvl = trail_lvlhi
 
         self.update_user_level(usr_id, usr_lvl)
         # c.execute("UPDATE User SET skill = " + str(usr_lvl) + " WHERE userID = " + str(usr_id))

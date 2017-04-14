@@ -15,6 +15,7 @@ class Database(object):
         with open('hikes.json') as data_file:
             data = json.load(data_file)
 
+
         for trail in data:
             try:
                 distance = float(trail['length'])

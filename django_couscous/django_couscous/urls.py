@@ -25,6 +25,7 @@ admin.autodiscover()
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', my_views.index),
+    url(r'^$', my_views.)
     # url(r'^$', my_views.current_datetime),
 ]
 

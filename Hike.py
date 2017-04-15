@@ -6,7 +6,6 @@ class Hike(object):
         self.difficulty = difficulty
         self.lat = lat
         self.lng = lng
-
 class User(object):
     def __init__(self, user_id, name, skill, lat, lng):
         self.user_id = user_id

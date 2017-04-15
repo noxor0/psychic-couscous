@@ -1,0 +1,70 @@
+/**
+ * index.scss
+ * - Add any styles you want here!
+ */
+ul { 
+  list-style-type: none; 
+  margin: 0;
+  padding: 20px; 
+  overflow: hidden;
+  background-color: #6b717f;
+  
+}
+
+il {
+  float: left; 
+}
+
+il a {
+  display: block; 
+  color: white;  
+  padding: 14px 16px; 
+  
+}
+
+il.a:hover {
+  background-color: #111; 
+}
+
+h1 {
+   
+  position: relative; 
+  text-align: center; 
+  color: black;
+  padding: 20px; 
+  margin: 0 80px 0 0; 
+ 
+}
+
+img{ 
+  position: absolute; 
+  display: block; 
+  
+}
+
+body {
+  padding: 50px 50px 50px 50px; 
+   background-color: rgb(111, 138, 157);
+  background-attachment: fixed;
+}
+
+#progressbar { 
+  margin-top: 100px; 
+  background-color: #699; 
+  border-radius: 20px; 
+  padding: 2px; 
+}
+
+#progressbar > div {
+  background-color: #6b717f;
+  color: white; 
+  text-align: center; 
+  border-radius: 18px;
+  height: 20px; 
+}
+
+table, th, td {
+  margin-right: auto; 
+  border: 1px white; 
+  color: white; 
+}

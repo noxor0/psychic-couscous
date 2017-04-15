@@ -1,5 +1,6 @@
 from math import radians, sin, cos, sqrt, atan2
 from Database import Database
+import json
 
 class HikeBuddy(object):
 # 1 degree of Longitude =
@@ -19,6 +20,11 @@ class HikeBuddy(object):
         distance = distance * .621371
         return distance
 
+    def decimal_default(object):
+        if isinstance(obj, decimal.Decimal):
+            return float(obj)
+        raise TypeError
+
     def find_suggestions(self):
         poss_hikes = []
         top_three = []
@@ -32,26 +38,22 @@ class HikeBuddy(object):
                 if(abs(user.skill - hike.difficulty) <= 1.5):
                     poss_hikes.append([hike, abs(user.skill - hike.difficulty)])
 
-        freq_table = db.get_hike_frequency()
-        freq_table = list(freq_table)
-        freq_table.sort(key=lambda x: x[1], reverse=True)
-        print freq_table
-        print poss_hikes
-        # for hike1 in poss_hikes:
-        #     print hike1[0].name
-
         if(len(poss_hikes) < 3):
             return "no hikes!"
         poss_hikes.sort(key=lambda x: x[1])
         for i in range(3):
-            top_three.append(poss_hikes[i][0])
+            temp = {}
+            temp['trailID'] = poss_hikes[i][0].trail_id
+            temp['name'] = poss_hikes[i][0].name
+            temp['difficulty'] = str(poss_hikes[i][0].difficulty)
+            temp['lat'] = str(poss_hikes[i][0].lat)
+            temp['lng'] = str(poss_hikes[i][0].lng)
+            temp = json.dumps(temp)
+            top_three.append(temp)
         return top_three
 
 db = Database()
 hb = HikeBuddy()
 suggestions = hb.find_suggestions()
-# for sugg in suggestions:
-#     print sugg.name
-
-# cool distance works
-# print hb.find_distance(47.1152, -122.2917, 47.4017, -121.3736)
+# print suggestions
+db.close()

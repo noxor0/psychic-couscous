@@ -10,10 +10,12 @@ class Database(object):
                                     db="hikeaway")        # name of the data base
 
         self.cursor = self.conn.cursor()
+    def close(self):
+        self.conn.close()
+        self.cursor.close()
     def add_trails(self):
         with open('hikes.json') as data_file:
             data = json.load(data_file)
-
         for trail in data:
             try:
                 distance = float(trail['length'])
@@ -54,12 +56,10 @@ class Database(object):
             hikes.append(temp)
         return hikes
 
-# SELECT trailID, COUNT(trailID)
-# FROM User_Hike
-# GROUP BY trailID;
     def get_hike_frequency(self, user_id=1):
+        self.conn.ping(True)
         trailSet = set()
-        self.cursor.execute("SELECT trailID, COUNT(trailID) FROM User_Hike GROUP BY trailID;")
+        self.cursor.execute("SELECT trailID FROM User_Hike GROUP BY trailID;")
         result = self.cursor.fetchall()
         for trailTuple in result:
             trailSet.add(trailTuple)

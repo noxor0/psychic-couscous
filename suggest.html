@@ -1,0 +1,83 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!--  Meta  -->
+  <meta charset="UTF-8" />
+  <title>Hike Away Profile</title>
+
+  <!--  Styles  -->
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+
+</head>
+<body>
+<ul>
+  <il><a href="#home">Home</a></il>
+  <il><a href="#recent">Recent Hikes</a></il>
+  <il><a href="#profile">My Profile</a></il>
+</ul>
+
+<header>
+<h1> Suggested Hikes </h1>
+  
+<div class="responsive">
+  <div class="gallery">
+    <a target="_blank" href="http://www.sevenwondersofwashingtonstate.com/uploads/4/7/4/6/47460045/3106667_orig.jpg">
+      <img src="http://www.sevenwondersofwashingtonstate.com/uploads/4/7/4/6/47460045/3106667_orig.jpg" alt="Forest" width="600" height="400">
+    </a>
+    <div class="desc">Hoh Rainforest</div>
+  </div>
+</div>
+
+<div class="responsive">
+  <div class="gallery">
+    <a target="_blank" href="http://www.runoftheriver.com/images/pic_outdoor_hike_1.jpg">
+      <img src="http://www.runoftheriver.com/images/pic_outdoor_hike_1.jpg" alt="Trees" width="600" height="400">
+    </a>
+    <div class="desc">Nason Ridge</div>
+  </div>
+</div>
+
+<div class="responsive">
+  <div class="gallery">
+    <a target="_blank" href="http://www.oregonhikers.org/w/images/thumb/6/69/MarquamLoop2.jpg/400px-MarquamLoop2.jpg">
+      <img src="http://www.oregonhikers.org/w/images/thumb/6/69/MarquamLoop2.jpg/400px-MarquamLoop2.jpg" alt="Mountains" width="600" height="400">
+    </a>
+    <div class="desc">Marquam Loop</div>
+  </div>
+</div>
+
+<div class="clearfix"></div>
+
+</header>
+<h1> How was your hike? </h1>
+<!-- Buttons -->
+<a href="#" class="btn blue">Easy</a>
+<a href="#" class="btn green">Medium</a>
+<a href="#" class="btn red">Hard</a>
+
+<div id="progressbar">
+  <div style="width:40%">40%</div>
+</div>
+
+<!-- <article> -->
+  <table> <!--style="width:80%"-->
+    <tr>
+    <th>Recent Hikes</th>
+    </tr>
+    <tr>
+    <td>{{user.userid}}</td>
+    </tr>
+    <tr>
+    <td>{{user.userid}}</td>
+    </tr>
+  </table>
+<!-- </article> -->
+
+  <!-- Scripts -->
+  <script src={% static 'scripts.js' %}></script>
+
+</body>
+</html>

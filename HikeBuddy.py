@@ -32,7 +32,11 @@ class HikeBuddy(object):
                 if(abs(user.skill - hike.difficulty) <= 1.5):
                     poss_hikes.append([hike, abs(user.skill - hike.difficulty)])
 
-        print db.get_hike_frequency()
+        freq_table = db.get_hike_frequency()
+        freq_table = list(freq_table)
+        freq_table.sort(key=lambda x: x[1], reverse=True)
+        print freq_table
+        print poss_hikes
         # for hike1 in poss_hikes:
         #     print hike1[0].name
 
@@ -46,6 +50,7 @@ class HikeBuddy(object):
 db = Database()
 hb = HikeBuddy()
 suggestions = hb.find_suggestions()
+db.close()
 # for sugg in suggestions:
 #     print sugg.name
 

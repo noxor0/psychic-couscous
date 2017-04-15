@@ -1,0 +1,23 @@
+INSERT INTO Trail(trailID, trailName, difficulty, lat, lng) VALUES('big-baby-id', 'big-baby', 7.2, 42.999, -122.322);
+
+# select all hikes by 1 user
+SELECT trailName
+FROM Trail t
+JOIN User_Hike uh
+ON t.trailID = uh.trailID
+WHERE uh.userID = 1;
+
+# select all trails not done by a user
+SELECT trailID, trailName, difficulty, lat, lng
+FROM Trail t
+WHERE trailID NOT IN (SELECT trailID FROM User_Hike WHERE userID = 1);
+
+# Update users stuff
+UPDATE User
+SET skill=1.1
+WHERE userID = 2;
+
+# Find frequency of trails
+SELECT trailID, COUNT(trailID)
+FROM User_Hike
+GROUP BY trailID;

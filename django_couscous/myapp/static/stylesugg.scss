@@ -5,6 +5,7 @@
 ul {
   position: relative;
   list-style-type: none;
+  display: inline;
   margin: 0;
   padding: 20px;
   overflow: hidden;
@@ -37,6 +38,10 @@ h1 {
 
 }
 
+// div.horizontal_boxes {
+//   display: inline-block;
+// }
+
 div.gallery {
     border: 1px solid #ccc;
 }
@@ -54,7 +59,7 @@ div.desc {
     padding: 6px;
     color: white;
     text-align: center;
-    font-size: 18px; 
+    font-size: 18px;
 }
 
 * {
@@ -62,9 +67,9 @@ div.desc {
 }
 
 .responsive {
-    display: flex; 
+    display: flex;
     padding: 0 20px;
-    align-items: center; 
+    align-items: center;
     float: left;
     width: 24.99999%;
 }

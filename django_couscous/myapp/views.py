@@ -20,15 +20,18 @@ suggestions = firebase1.get('/suggestion', None)
 #     return render(request, 'index.html', context)
 
 def index1(request):
+    suggestions = firebase1.get('/suggestion', None)
     response = [{'liked':-1, 'trailID':suggestions[0]['trailID']}]
+
     firebase1.put('/', 'hike_response', data=response)
     user = User.objects.get(userid=1)
-    skill = user.skill * Decimal(10.0)
+    skill = min(user.skill * Decimal(10.0) + Decimal(5), 100)
     # userhike = UserHike.objects.get(userid=2) #TODO don't use get!!!
     context = {'user': user, 'skill': skill}#, 'userhike': userhike}
     return render(request, 'index.html', context)
 
 def index2(request):
+    suggestions = firebase1.get('/suggestion', None)
     response = [{'liked':0, 'trailID':suggestions[1]['trailID']}]
     firebase1.put('/', 'hike_response', data=response)
     user = User.objects.get(userid=1)
@@ -38,10 +41,11 @@ def index2(request):
     return render(request, 'index.html', context)
 
 def index3(request):
+    suggestions = firebase1.get('/suggestion', None)
     response = [{'liked':1, 'trailID':suggestions[2]['trailID']}]
     firebase1.put('/', 'hike_response', data=response)
     user = User.objects.get(userid=1)
-    skill = user.skill * Decimal(10.0)
+    skill = max(user.skill * Decimal(10.0) - Decimal(5), 0)
     # userhike = UserHike.objects.get(userid=2) #TODO don't use get!!!
     context = {'user': user, 'skill': skill}#, 'userhike': userhike}
     return render(request, 'index.html', context)

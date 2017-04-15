@@ -9,12 +9,13 @@ class Database(object):
                                     passwd="hikeaway",  # your password
                                     db="hikeaway")        # name of the data base
 
-
         self.cursor = self.conn.cursor()
+    def close(self):
+        self.conn.close()
+        self.cursor.close()
     def add_trails(self):
         with open('hikes.json') as data_file:
             data = json.load(data_file)
-
         for trail in data:
             try:
                 distance = float(trail['length'])
@@ -35,6 +36,7 @@ class Database(object):
             except:
                 pass
         self.conn.close()
+
     def get_difficulty(self, distance, gain):
         print str(distance) + " " + str(gain)
         dist = distance * 5280.0 # Convert from miles to feet
@@ -43,6 +45,7 @@ class Database(object):
         s = (gain * 20) / dist
         difficulty = d + g + s
         return min(10.0, difficulty)
+
     def get_hikes(self, user_id=1):
         hikes = []
         self.cursor.execute("SELECT trailID, trailName, difficulty, lat, lng \
@@ -53,6 +56,14 @@ class Database(object):
             hikes.append(temp)
 
         return hikes
+
+    def get_hike_frequency(self, user_id=1):
+        trailSet = set()
+        self.cursor.execute("SELECT trailID, COUNT(trailID) FROM User_Hike GROUP BY trailID")
+        result = self.cursor.fetchall()
+        for trailTuple in result:
+            trailSet.add(trailTuple)
+        return trailSet
 
     def get_user(self, user_id=1):
         self.cursor.execute("SELECT * FROM User WHERE userID = %d" % (user_id))
@@ -80,9 +91,9 @@ class Database(object):
         self.cursor.execute("UPDATE User_Hike SET liked = " + str(liked) + " WHERE userID = " + str(user_id)+ " AND trailID = '" + trail_id + "'")
 
         self.conn.commit()
-    
+
     def update_usr_lvl(self, usr_id, trl_id):
-    
+
         # Open database
         # TODO migrate to driver file
         # db = MySQLdb.connect(host="hikeaway.crmldenzgavh.us-west-2.rds.amazonaws.com",    # your host, usually localhost
@@ -127,12 +138,10 @@ class Database(object):
                 elif trail_lvl < (usr_lvl - Decimal(.2)):
                     usr_lvl = max(0.0, trail_lvl)
                 else:
-                    usr_lvl = trail_lvlh
+                    usr_lvl = trail_lvlhi
 
         self.update_user_level(usr_id, usr_lvl)
         # c.execute("UPDATE User SET skill = " + str(usr_lvl) + " WHERE userID = " + str(usr_id))
 
         # db.commit()
         # db.close()
-
-

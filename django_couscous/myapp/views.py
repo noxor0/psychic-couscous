@@ -11,7 +11,7 @@ def index(request):
     # context = RequestContext(request, {
     #     'latest_question_list': latest_question_list,
     # })template.render(context)
-    return render_to_response('index.html')
+    return render(request, 'index.html', {})
 
 def current_datetime(request):
     now = datetime.datetime.now()

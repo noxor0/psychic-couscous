@@ -1,12 +1,11 @@
 from __future__ import unicode_literals
-
 from django.db import models
 
 # Create your models here.
 class User(models.Model):
     userid = models.AutoField(db_column='userID', primary_key=True)  # Field name made lowercase.
     username = models.CharField(db_column='userName', max_length=20, blank=True, null=True)  # Field name made lowercase.
-    skill = models.DecimalField(max_digits=3, decimal_places=1, blank=True, null=True)
+    skill = models.DecimalField(max_digits=3, decimal_places=1, blank=True, null=True)# * Decimal(10)
     lat = models.DecimalField(max_digits=7, decimal_places=4, blank=True, null=True)
     lng = models.DecimalField(max_digits=7, decimal_places=4, blank=True, null=True)
 

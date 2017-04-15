@@ -50,7 +50,6 @@ class HikeBuddy(object):
 db = Database()
 hb = HikeBuddy()
 suggestions = hb.find_suggestions()
-db.close()
 # for sugg in suggestions:
 #     print sugg.name
 

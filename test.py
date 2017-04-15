@@ -1,13 +1,16 @@
 from flask import Flask, jsonify
+from flask_restful import Resource, Api
 from HikeBuddy import HikeBuddy
 
 app = Flask(__name__)
-hb = HikeBuddy()
-tasks = hb.find_suggestions()
+api = Api(app)
 
-@app.route('/todo/api/v1.0/tasks', methods=['GET'])
-def get_tasks():
-    return jsonify({'tasks': tasks})
-
+class hike(Resource):
+    # @app.route('/todo/api/v1.0/tasks', methods=['GET'])
+    def get(self):
+        hb = HikeBuddy()
+        tasks = hb.find_suggestions()
+        return jsonify({'tasks': tasks})
+api.add_resource(hike, '/todo/api/v1.0/tasks')
 if __name__ == '__main__':
     app.run(debug=True)

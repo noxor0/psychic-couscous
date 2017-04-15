@@ -3,6 +3,8 @@ from Database import Database
 import json
 
 class HikeBuddy(object):
+    def __init__(self):
+        self.db = Database()
 # 1 degree of Longitude =
 # cosine (latitude in decimal degrees) * length of degree (miles) at equator.
     def find_distance(self, user_lat, user_long, trail_lat, trail_long):
@@ -25,8 +27,9 @@ class HikeBuddy(object):
         poss_hikes = []
         top_three = []
 
-        user = db.get_user(1)
-        all_hikes = db.get_hikes()
+        user = self.db.get_user(1)
+        all_hikes = self.db.get_hikes()
+        # freq_table = self.db.get_hike_frequency()
 
         # find hikes within 80 miles
         for hike in all_hikes:
@@ -37,6 +40,10 @@ class HikeBuddy(object):
         if(len(poss_hikes) < 3):
             return "no hikes!"
         poss_hikes.sort(key=lambda x: x[1])
+
+        # for quick_hike in poss_hikes:
+        #     print quick_hike[0].name
+
         for i in range(3):
             temp = {}
             temp['trailID'] = poss_hikes[i][0].trail_id
@@ -47,7 +54,6 @@ class HikeBuddy(object):
             top_three.append(temp)
         return top_three
 
-db = Database()
 hb = HikeBuddy()
 suggestions = hb.find_suggestions()
 # print suggestions

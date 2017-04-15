@@ -1,3 +1,4 @@
+from firebase import firebase
 from math import radians, sin, cos, sqrt, atan2
 from Database import Database
 import json
@@ -53,7 +54,3 @@ class HikeBuddy(object):
             temp['lng'] = str(poss_hikes[i][0].lng)
             top_three.append(temp)
         return top_three
-
-hb = HikeBuddy()
-suggestions = hb.find_suggestions()
-# print suggestions

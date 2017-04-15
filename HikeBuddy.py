@@ -20,10 +20,6 @@ class HikeBuddy(object):
         distance = distance * .621371
         return distance
 
-    def decimal_default(object):
-        if isinstance(obj, decimal.Decimal):
-            return float(obj)
-        raise TypeError
 
     def find_suggestions(self):
         poss_hikes = []
@@ -48,7 +44,6 @@ class HikeBuddy(object):
             temp['difficulty'] = str(poss_hikes[i][0].difficulty)
             temp['lat'] = str(poss_hikes[i][0].lat)
             temp['lng'] = str(poss_hikes[i][0].lng)
-            temp = json.dumps(temp)
             top_three.append(temp)
         return top_three
 
@@ -56,4 +51,3 @@ db = Database()
 hb = HikeBuddy()
 suggestions = hb.find_suggestions()
 # print suggestions
-db.close()

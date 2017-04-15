@@ -59,8 +59,7 @@ class Database(object):
 # GROUP BY trailID;
     def get_hike_frequency(self, user_id=1):
         trailSet = set()
-        self.cursor.execute("SELECT trailID, COUNT(trailID)\
-                            FROM User_Hike GROUP BY trailID;")
+        self.cursor.execute("SELECT trailID, COUNT(trailID) FROM User_Hike GROUP BY trailID;")
         result = self.cursor.fetchall()
         for trailTuple in result:
             trailSet.add(trailTuple)

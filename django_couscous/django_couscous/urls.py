@@ -23,8 +23,15 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', my_views.index),
-    # url(r'^$', my_views.suggest),
+    url(r'^1/', my_views.index1),
+    url(r'^2/', my_views.index2),
+    url(r'^3/', my_views.index3),
+    url(r'^4/', my_views.index1),
+    url(r'^5/', my_views.index2),
+    url(r'^6/', my_views.index3),
+    url(r'^$', my_views.suggest),
+
+    # url(r'^index/', my_views.suggest),
 ]
 
 if settings.DEBUG:

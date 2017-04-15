@@ -1,0 +1,54 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!--  Meta  -->
+  <meta charset="UTF-8" />
+  <title>Hike Away Profile</title>
+
+  <!--  Styles  -->
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+
+</head>
+<body>
+<ul>
+  <il><a href="#home">Home</a></il>
+  <il><a href="#recent">Recent Hikes</a></il>
+  <il><a href="#profile">My Profile</a></il>
+</ul>
+
+<header>
+<h1> Welcome back, {{ user.username }} </h1>
+  <p> <img src="https://backroads-web.s3.amazonaws.com/images/search/thumbnail/french-italian-alps-walking-hiking-tour.jpg" width="246" height="150">  </p>
+</header>
+<h1> How was your hike? </h1>
+<!-- Buttons -->
+<a href="#" class="btn blue">Too Easy</a>
+<a href="#" class="btn green">Just Right</a>
+<a href="#" class="btn red">Too Hard</a>
+
+<div id="progressbar">
+  <div style="width:40%">40%</div>
+</div>
+
+<!-- <article> -->
+  <table> <!--style="width:80%"-->
+    <tr>
+    <th>Recent Hikes</th>
+    </tr>
+    <tr>
+    <td>{{user.userid}}</td>
+    </tr>
+    <tr>
+    <td>{{user.userid}}</td>
+    </tr>
+  </table>
+<!-- </article> -->
+
+  <!-- Scripts -->
+  <script src={% static 'scripts.js' %}></script>
+
+</body>
+</html>
